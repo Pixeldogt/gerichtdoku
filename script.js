@@ -1,8 +1,16 @@
+window.onload = () => {
+  const savedPin = localStorage.getItem("ereignisAppPin");
+  if (savedPin) {
+    document.getElementById("pin").value = savedPin;
+  }
+};
+
 async function submitData() {
   const dateEl = document.getElementById("date");
   const timeEl = document.getElementById("time");
   const categoryEl = document.getElementById("category");
   const descriptionEl = document.getElementById("description");
+  const pinEl = document.getElementById("pin");
   const statusEl = document.getElementById("status");
 
   const description = descriptionEl.value.trim();
@@ -11,10 +19,19 @@ async function submitData() {
     return;
   }
 
-  // Hole Werte oder nutze aktuelle Zeit
+  const PIN = pinEl.value.trim();
+  if (!PIN) {
+    statusEl.textContent = "Bitte PIN eingeben.";
+    return;
+  }
+
+  // PIN speichern
+  localStorage.setItem("ereignisAppPin", PIN);
+
+  // Aktuelle Zeit
   const now = new Date();
 
-  // Datum verarbeiten
+  // Datum
   let formattedDate;
   if (dateEl.value) {
     const [yyyy, mm, dd] = dateEl.value.split("-");
@@ -26,7 +43,7 @@ async function submitData() {
     formattedDate = `${dd}.${mm}.${yyyy}.`;
   }
 
-  // Uhrzeit verarbeiten
+  // Uhrzeit
   let formattedTime;
   if (timeEl.value) {
     formattedTime = timeEl.value;
@@ -36,16 +53,9 @@ async function submitData() {
     formattedTime = `${hh}:${min}`;
   }
 
-  // Kategorie (mit Fallback)
   const category = categoryEl.value || "Aktivität";
 
   statusEl.textContent = "Wird gespeichert...";
-
-  const PIN = document.getElementById("pin").value.trim();
-  if (!PIN) {
-    statusEl.textContent = "Bitte PIN eingeben.";
-    return;
-  }
 
   try {
     await fetch("https://script.google.com/macros/s/AKfycbzFyVOpW6Lbg2tGfRHE9ETBTMs9SCDz17AhoNLDGtqrolqX3trbJpxGqWL5vGFw7PUK5Q/exec", {
