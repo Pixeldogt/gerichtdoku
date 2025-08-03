@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ereignis-Erfassung</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Neuer Eintrag</h2>
+    <label for="pin">🔑 PIN</label>
+    <input type="password" id="pin" required>
+
+    <label for="date">📆 Datum</label>
+    <input type="date" id="date" required>
+
+    <label for="time">🕒 Uhrzeit</label>
+    <input type="time" id="time" required>
+
+    <label for="category">📂 Kategorie</label>
+    <select id="category">
+      <option value="Aktivität" selected>Aktivität</option>
+      <option value="Beobachtung">Beobachtung</option>
+      <option value="Anmerkung">Anmerkung</option>
+      <option value="Sonstiges">Sonstiges</option>
+    </select>
+
+
+    <label for="description">📝 Beschreibung</label>
+    <textarea id="description" placeholder="Was ist passiert?" required></textarea>
+
+    <button onclick="submitData()">✅ Speichern</button>
+    <p id="status"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
