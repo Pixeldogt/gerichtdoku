@@ -62,3 +62,72 @@ button:hover {
   text-align: center;
   color: #333;
 }
+
+#category-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#category-group label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1.5px solid #dddddd;
+  border-radius: 6px;
+  padding: 10px 0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s, border 0.2s, color 0.2s;
+  user-select: none;
+}
+
+#category-group input[type="radio"] {
+  display: none;
+}
+
+#category-group label span {
+  width: 100%;
+  text-align: center;
+  transition: color 0.2s;
+}
+
+/* Optional: Hover effect */
+#category-group label:hover {
+  border-color: #1976d2;
+}
+
+/* GANZES Label einfärben, wenn Radio aktiv */
+#category-group label:has(input[type="radio"]:checked) {
+  background: #e3f0fc;
+  color: #1976d2;
+  border-color: #1976d2;
+  font-weight: 600;
+}
+
+#time-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 15px 0;
+}
+
+#time-buttons button {
+  flex: 1;
+  padding: 14px 0;
+  background: white;
+  color: black;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s, color 0.2s;
+}
+
+#time-buttons button:hover {
+  background: white;
+  border-color: #1976d2;
+  color: #155a9c;
+}

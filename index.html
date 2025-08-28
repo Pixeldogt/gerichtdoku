@@ -19,14 +19,30 @@
 
     <label for="time">🕒 Uhrzeit</label>
     <input type="time" id="time" required>
+    <div id="time-buttons">
+      <button type="button" id="minus1min">-1 min</button>
+      <button type="button" id="minus5min">-5 min</button>
+    </div>
 
-    <label for="category">📂 Kategorie</label>
-    <select id="category">
-      <option value="Aktivität" selected>Aktivität</option>
-      <option value="Beobachtung">Beobachtung</option>
-      <option value="Anmerkung">Anmerkung</option>
-      <option value="Sonstiges">Sonstiges</option>
-    </select>
+    <label>📂 Kategorie</label>
+    <div id="category-group">
+      <label>
+        <input type="radio" name="category" value="Aktivität" checked>
+        <span>Aktivität</span>
+      </label>
+      <label>
+        <input type="radio" name="category" value="Beobachtung">
+        <span>Beobachtung</span>
+      </label>
+      <label>
+        <input type="radio" name="category" value="Anmerkung">
+        <span>Anmerkung</span>
+      </label>
+      <label>
+        <input type="radio" name="category" value="Sonstiges">
+        <span>Sonstiges</span>
+      </label>
+    </div>
 
 
     <label for="description">📝 Beschreibung</label>

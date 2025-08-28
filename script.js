@@ -8,7 +8,8 @@ window.onload = () => {
 async function submitData() {
   const dateEl = document.getElementById("date");
   const timeEl = document.getElementById("time");
-  const categoryEl = document.getElementById("category");
+  // Kategorie: Radio-Buttons auslesen
+  const categoryEls = document.getElementsByName("category");
   const descriptionEl = document.getElementById("description");
   const pinEl = document.getElementById("pin");
   const statusEl = document.getElementById("status");
@@ -53,7 +54,14 @@ async function submitData() {
     formattedTime = `${hh}:${min}`;
   }
 
-  const category = categoryEl.value || "Aktivität";
+  // Ausgewählte Kategorie ermitteln
+  let category = "Aktivität";
+  for (const el of categoryEls) {
+    if (el.checked) {
+      category = el.value;
+      break;
+    }
+  }
 
   statusEl.textContent = "Wird gespeichert...";
 
@@ -75,11 +83,35 @@ async function submitData() {
 
     statusEl.textContent = "Gespeichert ✅";
     descriptionEl.value = "";
-    dateEl.value = "";
     timeEl.value = "";
-    categoryEl.value = "Aktivität";
+    // Kategorie zurücksetzen auf "Aktivität"
+    for (const el of categoryEls) {
+      el.checked = el.value === "Aktivität";
+    }
   } catch (error) {
     console.error("Fehler:", error);
     statusEl.textContent = "Fehler beim Speichern ❌";
   }
 }
+
+document.getElementById("minus5min").addEventListener("click", function() {
+  const timeInput = document.getElementById("time");
+  let [hh, mm] = timeInput.value
+    ? timeInput.value.split(":").map(Number)
+    : [new Date().getHours(), new Date().getMinutes()];
+  let date = new Date();
+  date.setHours(hh, mm, 0, 0);
+  date.setMinutes(date.getMinutes() - 5);
+  timeInput.value = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+});
+
+document.getElementById("minus1min").addEventListener("click", function() {
+  const timeInput = document.getElementById("time");
+  let [hh, mm] = timeInput.value
+    ? timeInput.value.split(":").map(Number)
+    : [new Date().getHours(), new Date().getMinutes()];
+  let date = new Date();
+  date.setHours(hh, mm, 0, 0);
+  date.setMinutes(date.getMinutes() - 1);
+  timeInput.value = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+});
